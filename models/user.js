@@ -20,9 +20,32 @@ module.exports = (sequelize, DataTypes) => {
 
   /**
    * ASSOCIATIONS
+   *
+   * 1] N:M relation between User X (follower) and User Y (followed)
+   * 2] 1:M relation between User and Tweet
    */
   User.associate = function(models) {
-    // TODO - DEFINE ASSOCIATIONS
+    // 1:M relation -> 1 user can follow many users
+    User.belongsToMany(models.User, {
+      through: "Following",
+      as: "follower",
+      foreignKey: "followerId",
+      updatedAt: false
+    });
+
+    // N:1 relation -> 1 user can be followed by many users
+    User.belongsToMany(models.User, {
+      through: "Following",
+      as: "followed",
+      foreignKey: "followedId",
+      updatedAt: false
+    });
+
+    // 1:M relation -> 1 user can post many tweets
+    User.hasMany(models.Tweet, {
+      foreignKey: "tweeterId",
+      onDelete: "CASCADE"
+    });
   };
 
   /**

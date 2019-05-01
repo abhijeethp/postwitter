@@ -1,4 +1,4 @@
 const users = require("./users");
-module.exports = {
-  users
-};
+const tweets = require("./tweets");
+
+module.exports = { users, tweets };

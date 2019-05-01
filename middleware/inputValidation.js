@@ -1,5 +1,3 @@
-module.exports = { validateRegisterInputs, validateLoginInputs };
-
 /**
  * Validate /register inputs
  *
@@ -38,6 +36,21 @@ function validateLoginInputs(req, res, next) {
 }
 
 /**
+ * Validate /tweet inputs
+ *
+ * Middleware to check if all inputs given
+ * by the client to create a tweet are valid
+ *
+ * @throws {Error} Will throw error if username or email has invalid format
+ * @throws {Error} Will throw error if password has invalid format
+ */
+function validateTweetInputs(req, res, next) {
+  isValidTweetText(req.body.text)
+    ? next()
+    : next(new Error("INVALID_TWEET_TEXT"));
+}
+
+/**
  * Validate email (Utility function)
  *
  * Validates an email based on regexp to check if email
@@ -72,3 +85,21 @@ function isValidPassword(password) {
 function isValidUsername(username) {
   return /^([a-zA-Z0-9_-]){6,20}$/.test(username);
 }
+
+/**
+ * Validate tweet text (Utility function)
+ *
+ * Validates the text content of a tweet based on regexp to check if text
+ * is between 5 to 200 characters and contains only alpha-numeric characters.
+ *
+ * @returns {boolean} if username format is valid
+ */
+function isValidTweetText(tweetText) {
+  return tweetText.length >= 5 && tweetText.length <= 200;
+}
+
+module.exports = {
+  validateRegisterInputs,
+  validateLoginInputs,
+  validateTweetInputs
+};

@@ -22,6 +22,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // -- REGISTER APP ROUTES -- //
 app.use("/", require("./routes/index"));
+app.use("/", require("./routes/user"));
+app.use("/tweet", require("./routes/tweet"));
 
 // -- REGISTER ERROR HANDLING MIDDLEWARE -- //
 app.use(require("./middleware").errorHandler);
