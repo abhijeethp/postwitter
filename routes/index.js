@@ -1,9 +1,62 @@
 var express = require("express");
 var router = express.Router();
+const usersController = require("../controllers").users;
+const permissionHandlerMiddleware = require("../middleware").permissionHandler;
+const inputValidationMiddleware = require("../middleware").inputValidation;
 
-/* GET home page. */
+/**
+ * HOME ROUTE
+ *
+ * @description returns a greeting message.
+ */
 router.get("/", function(req, res, next) {
   res.send("welcome to postwitter");
 });
+
+/**
+ * REGISTER ROUTE
+ *
+ * @description registers a new user.
+ */
+router.post(
+  "/register",
+  permissionHandlerMiddleware.proceedIfNotLoggedIn,
+  inputValidationMiddleware.validateRegisterInputs,
+  usersController.register
+);
+
+/**
+ * LOGIN ROUTE
+ *
+ * @description authenticates and logs in an existing user.
+ */
+router.post(
+  "/login",
+  permissionHandlerMiddleware.proceedIfNotLoggedIn,
+  inputValidationMiddleware.validateLoginInputs,
+  usersController.login
+);
+
+/**
+ * LOGOUT ROUTE
+ *
+ * @description logs out currently logged in user.
+ */
+router.get(
+  "/logout",
+  permissionHandlerMiddleware.proceedIfLoggedIn,
+  usersController.logout
+);
+
+/**
+ * ME ROUTE
+ *
+ * @description returns currently logged in user.
+ */
+router.get(
+  "/me",
+  permissionHandlerMiddleware.proceedIfLoggedIn,
+  usersController.me
+);
 
 module.exports = router;
