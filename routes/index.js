@@ -10,7 +10,7 @@ const inputValidationMiddleware = require("../middleware").inputValidation;
  * @description returns a greeting message.
  */
 router.get("/", function(req, res, next) {
-  res.send("welcome to postwitter");
+  res.status(200).send("WELCOME TO POSTWITTER");
 });
 
 /**
