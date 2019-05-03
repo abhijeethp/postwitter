@@ -2,6 +2,9 @@
 
 > ## FUNCTIONALITIES
 
+**All application routes can be found in the [postman collection](https://github.com/rkinabhi/postwitter/blob/master/postwitter.postman_collection.json).**
+**The results of each API route can be found in [screenshots]().**
+
 #### Basic Functionality
 
 - User registration using unique username and a password.
@@ -21,13 +24,13 @@
 
 > ## RUNNING THE APPLICATION
 
-### Requirements
+#### Requirements
 
 - node 10.15.3+
 - npm 6.9.0+
 - MySQL 5.6+
 
-### development workflow
+#### development workflow
 
 ```
 > git clone https://github.com/rkinabhi/postwitter.git
@@ -39,7 +42,7 @@
 
 1. Create an empty database with name **postwitter** in MySQL.
 2. Go inside root directory of the project.
-3. Set database credentials for "**[development](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json#L2)**]" in **[config/database_config.json](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json)**.
+3. Set database credentials for "**[development](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json#L2)**" in **[config/database_config.json](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json)**.
 4. `> npm start`
 
 #### running tests
