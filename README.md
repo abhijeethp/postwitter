@@ -5,22 +5,18 @@
 **All application routes can be found in the [postman collection](https://github.com/rkinabhi/postwitter/blob/master/postwitter.postman_collection.json).**
 **The results of each API route and the tests can be found in [screenshots](https://github.com/rkinabhi/postwitter/tree/master/screenshots).**
 
-#### Basic Functionality
-
 - User registration using unique username and a password.
 - User login including session maintenance.
-
-#### Extended Functionality
 
 - Follow / unfollow.
 - Create / read / delete tweet.
 - Unit / Integration tests (for basic and extended functionality endpoints).
 
-#### Extra Credit
-
 - Like / unlike a tweet.
 - Retweet / unretweet.
 - Replies and threading.
+
+---
 
 > ## RUNNING THE APPLICATION
 
