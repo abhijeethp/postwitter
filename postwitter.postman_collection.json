@@ -15,24 +15,37 @@
 						{
 							"name": "like",
 							"request": {
-								"method": "GET",
-								"header": [],
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
 								"body": {
-									"mode": "raw",
-									"raw": ""
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "tweetId",
+											"value": "2",
+											"type": "text"
+										}
+									]
 								},
 								"url": {
-									"raw": "localhost:8000/tweet/like/2",
+									"raw": "localhost:8000/tweet/like",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
 										"tweet",
-										"like",
-										"2"
+										"like"
 									]
-								}
+								},
+								"description": "likes a tweet"
 							},
 							"response": []
 						},
@@ -56,7 +69,8 @@
 										"like",
 										"2"
 									]
-								}
+								},
+								"description": "unlikes a tweet"
 							},
 							"response": []
 						}
@@ -69,24 +83,37 @@
 						{
 							"name": "retweet",
 							"request": {
-								"method": "GET",
-								"header": [],
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
 								"body": {
-									"mode": "raw",
-									"raw": ""
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "tweetId",
+											"value": "2",
+											"type": "text"
+										}
+									]
 								},
 								"url": {
-									"raw": "localhost:8000/tweet/retweet/2",
+									"raw": "localhost:8000/tweet/retweet",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
 										"tweet",
-										"retweet",
-										"2"
+										"retweet"
 									]
-								}
+								},
+								"description": "retweets a tweet"
 							},
 							"response": []
 						},
@@ -121,7 +148,7 @@
 					"name": "comment",
 					"item": [
 						{
-							"name": "comment",
+							"name": "comment - create",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -137,12 +164,12 @@
 									"urlencoded": [
 										{
 											"key": "text",
-											"value": "this tweet is very nice....",
+											"value": "This tweet is very nice..",
 											"type": "text"
 										},
 										{
 											"key": "tweetId",
-											"value": "1",
+											"value": "2",
 											"type": "text"
 										}
 									]
@@ -162,7 +189,7 @@
 							"response": []
 						},
 						{
-							"name": "reply",
+							"name": "reply - create",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -231,7 +258,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "index",
+					"name": "tweet - index",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -253,7 +280,7 @@
 					"response": []
 				},
 				{
-					"name": "create",
+					"name": "tweet - create",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -269,7 +296,7 @@
 							"urlencoded": [
 								{
 									"key": "text",
-									"value": "BORING TWEET #HELLO_WORLD",
+									"value": "#MAY_THE_SOURCE_BE_WITH_YOU",
 									"type": "text"
 								}
 							]
@@ -313,7 +340,7 @@
 					"response": []
 				},
 				{
-					"name": "delete",
+					"name": "tweet - delete",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -331,7 +358,8 @@
 								"tweet",
 								"1"
 							]
-						}
+						},
+						"description": "deletes a tweet"
 					},
 					"response": []
 				}
@@ -344,7 +372,14 @@
 					"name": "unfollow",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -360,7 +395,8 @@
 								"follow",
 								"1"
 							]
-						}
+						},
+						"description": "unfollows a different user"
 					},
 					"response": []
 				},
@@ -381,7 +417,7 @@
 							"urlencoded": [
 								{
 									"key": "userId",
-									"value": "2",
+									"value": "1",
 									"type": "text"
 								}
 							]
@@ -397,7 +433,7 @@
 								"follow"
 							]
 						},
-						"description": "follows another user"
+						"description": "follows a different user"
 					},
 					"response": []
 				}
@@ -442,7 +478,8 @@
 							"path": [
 								"login"
 							]
-						}
+						},
+						"description": "logs a pre-existing user into the application"
 					},
 					"response": []
 				},
@@ -490,27 +527,27 @@
 								{
 									"key": "tweets",
 									"value": "TRUE",
-									"description": "includes list of tweets made by the user"
+									"description": "includes list of tweets made by the user if VALUE=TRUE"
 								},
 								{
 									"key": "retweets",
 									"value": "TRUE",
-									"description": "includes list of tweets retweeted by the user"
+									"description": "includes list of tweets retweeted by the user if VALUE=TRUE"
 								},
 								{
 									"key": "likes",
 									"value": "TRUE",
-									"description": "includes list of tweets liked by the user"
+									"description": "includes list of tweets liked by the user if VALUE=TRUE"
 								},
 								{
 									"key": "followers",
 									"value": "TRUE",
-									"description": "includes list of users following current user"
+									"description": "includes list of users following current user if VALUE=TRUE"
 								},
 								{
 									"key": "following",
 									"value": "TRUE",
-									"description": "includes list of users being followed by current user"
+									"description": "includes list of users being followed by current user if VALUE=TRUE"
 								}
 							]
 						},
