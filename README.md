@@ -1,48 +1,51 @@
-# POSTWITTER
+# POSTWITTER - TWITTER CLONE
 
-## TWITTER CLONE
-
-### FUNCTIONALITIES
+> ### FUNCTIONALITIES
 
 #### Basic Functionality
 
 - User registration using unique username and a password
-- User login Including session maintenance
+- User login including session maintenance
 
 #### Extended Functionality
 
 - Follow, unfollow
 - Create, read, delete tweet
-- Unit/Integration tests for _all_ endpoints
+- Unit / Integration tests for basic and extended functionality endpoints
 
 #### Extra Credit
 
 - Like / unlike a tweet
-- Retweet
+- Retweet / unretweet
 - Replies and threading
 
-### RUNNING THE APPLICATION
+> ### RUNNING THE APPLICATION
 
 ### Requirements
 
 - node 10.15.3+
 - npm 6.9.0+
-- mysql 5.6+
+- MySql 5.6+
 
 ### development workflow
 
-- git clone **repolink**
-- cd postwitter
-- npm install
+```
+> git clone https://github.com/rkinabhi/postwitter.git
+> cd postwitter
+> npm install
+```
 
-#### run server
+#### running the server
 
-- create database 'postwitter' in mysql
-- set database credentials for development in config/database_config.json
-- npm start
+1. Create an empty database with name **postwitter** in MySql
+2. Go inside root directory of the project
+
+3. Set database credentials for "**development**" in **config/database_config.json**
+4. `> npm start`
 
 #### running tests
 
-- create database 'postwitter_test' in mysql
-- set database credentials for test in config/database_config.json
-- npm test
+1. Create an empty database with name **postwitter_test** in MySql
+2. Go inside root directory of the project
+3. Set database credentials for "**test**" in **config/database_config.json**
+4. `> npm test`
