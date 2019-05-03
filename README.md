@@ -3,7 +3,7 @@
 > ## FUNCTIONALITIES
 
 **All application routes can be found in the [postman collection](https://github.com/rkinabhi/postwitter/blob/master/postwitter.postman_collection.json).**
-**The results of each API route and the tests can be found in [screenshots]().**
+**The results of each API route and the tests can be found in [screenshots](https://github.com/rkinabhi/postwitter/tree/master/screenshots).**
 
 #### Basic Functionality
 
@@ -42,12 +42,12 @@
 
 1. Create an empty database with name **postwitter** in MySQL.
 2. Go inside root directory of the project.
-3. Set database credentials for "**[development](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json#L2)**" in **[config/database_config.json](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json)**.
+3. Set database credentials (username, password and host) for "**[development](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json#L2)**" in **[config/database_config.json](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json)**.
 4. `> npm start`
 
 #### running tests
 
 1. Create an empty database with name **postwitter_test** in MySQL.
 2. Go inside root directory of the project.
-3. Set database credentials for "**[test](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json#L10)**" in **[config/database_config.json](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json)**
+3. Set database credentials (username, password and host) for "**[test](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json#L10)**" in **[config/database_config.json](https://github.com/rkinabhi/postwitter/blob/master/config/database_config.json)**
 4. `> npm test`
