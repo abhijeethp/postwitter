@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const Sequelize = require("sequelize");
+const Sequelize = require("sequelize-hierarchy")();
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV;
 const config = require("../config/database_config.json")[env];

@@ -14,7 +14,7 @@ module.exports = function() {
   });
 
   beforeEach(done => {
-    agent.get("/logout").end(() => done());
+    agent.post("/logout").end(() => done());
   });
   /**
    * HOME ROUTE (test for no reason :D)
@@ -338,7 +338,7 @@ module.exports = function() {
         .post("/register")
         .send(user)
         .end(() => {
-          agent.get("/logout").end((err, res) => {
+          agent.post("/logout").end((err, res) => {
             res.should.have.status(200);
             res.text.should.be.eql("LOGGED_OUT_SUCCESSFULLY");
             done();
@@ -347,7 +347,7 @@ module.exports = function() {
     });
 
     it("it should return an error if no user is logged in", done => {
-      agent.get("/logout").end((err, res) => {
+      agent.post("/logout").end((err, res) => {
         res.should.have.status(401);
         res.error.text.should.eql("Error : NOT_LOGGED_IN");
         done();

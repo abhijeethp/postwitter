@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "6f5a69c4-3e5a-49fe-878f-99c37078632e",
+		"name": "postwitter",
+		"description": "postman twitter clone assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "tweet",
+			"item": [
+				{
+					"name": "like",
+					"item": [
+						{
+							"name": "like",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8000/tweet/like/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"tweet",
+										"like",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "unlike",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8000/tweet/like/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"tweet",
+										"like",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "retweet",
+					"item": [
+						{
+							"name": "retweet",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8000/tweet/retweet/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"tweet",
+										"retweet",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "unretweet",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8000/tweet/retweet/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"tweet",
+										"retweet",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "comment",
+					"item": [
+						{
+							"name": "comment",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "text",
+											"value": "this tweet is very nice....",
+											"type": "text"
+										},
+										{
+											"key": "tweetId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8000/tweet/comment",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"tweet",
+										"comment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reply",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "text",
+											"value": "this comment is very nice....",
+											"type": "text"
+										},
+										{
+											"key": "commentId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8000/tweet/comment/reply",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"tweet",
+										"comment",
+										"reply"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "comment - show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8000/tweet/comment/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"tweet",
+										"comment",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/tweet",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"tweet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "BORING TWEET #HELLO_WORLD",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/tweet",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"tweet"
+							]
+						},
+						"description": "creates a new tweet for currently logged in user"
+					},
+					"response": []
+				},
+				{
+					"name": "tweet - show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/tweet/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"tweet",
+								"1"
+							]
+						},
+						"description": "get a particular tweet"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/tweet/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"tweet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "unfollow",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/user/follow/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"follow",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "follow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/user/follow",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"follow"
+							]
+						},
+						"description": "follows another user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "alpha.user@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "PasswordAlpha123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/me?tweets=TRUE&retweets=TRUE&likes=TRUE&followers=TRUE&following=TRUE",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"me"
+							],
+							"query": [
+								{
+									"key": "tweets",
+									"value": "TRUE",
+									"description": "includes list of tweets made by the user"
+								},
+								{
+									"key": "retweets",
+									"value": "TRUE",
+									"description": "includes list of tweets retweeted by the user"
+								},
+								{
+									"key": "likes",
+									"value": "TRUE",
+									"description": "includes list of tweets liked by the user"
+								},
+								{
+									"key": "followers",
+									"value": "TRUE",
+									"description": "includes list of users following current user"
+								},
+								{
+									"key": "following",
+									"value": "TRUE",
+									"description": "includes list of users being followed by current user"
+								}
+							]
+						},
+						"description": "returns details about currently logged in user."
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "alpha.user@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "displayName",
+									"value": "Alpha User",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "PasswordAlpha123",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "AlphaUser",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"register"
+							]
+						},
+						"description": "creates a new user and logs the user into the application"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8000",
+					"host": [
+						"localhost"
+					],
+					"port": "8000"
+				},
+				"description": "welcome to postwitter! :D"
+			},
+			"response": []
+		}
+	]
+}

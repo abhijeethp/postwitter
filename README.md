@@ -1,6 +1,6 @@
 # POSTWITTER
 
-## TWITTER CLONE - POSTMAN ASSIGNMENT
+## TWITTER CLONE
 
 ### FUNCTIONALITIES
 
@@ -17,16 +17,16 @@
 
 #### Extra Credit
 
-- Like/unlike a tweet
+- Like / unlike a tweet
 - Retweet
 - Replies and threading
 
-### RUNNING APPLICATION
+### RUNNING THE APPLICATION
 
 ### Requirements
 
-- node
-- npm
+- node 10.15.3+
+- npm 6.9.0+
 - mysql 5.6+
 
 ### development workflow
@@ -37,12 +37,12 @@
 
 #### run server
 
-- create database 'postwitter'
+- create database 'postwitter' in mysql
 - set database credentials for development in config/database_config.json
 - npm start
 
 #### running tests
 
-- create database 'postwitter_test'
+- create database 'postwitter_test' in mysql
 - set database credentials for test in config/database_config.json
 - npm test

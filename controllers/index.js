@@ -1,4 +1,5 @@
-const users = require("./users");
-const tweets = require("./tweets");
+const user = require("./user");
+const tweet = require("./tweets");
+const auth = require("./auth");
 
-module.exports = { users, tweets };
+module.exports = { user, tweet, auth };

@@ -1,7 +1,7 @@
 /**
- * Validate /register inputs
+ * VALIDATE REGISTER INPUTS
  *
- * Middleware to check if all inputs given by the
+ * @description Middleware to check if all inputs given by the
  * client required for registration of user are valid.
  *
  * @throws {Error} Will throw error if email has invalid format
@@ -19,9 +19,9 @@ function validateRegisterInputs(req, res, next) {
 }
 
 /**
- * Validate /login inputs
+ * VALIDATE LOGIN INPUTS
  *
- * Middleware to check if all inputs given by the
+ * @description Middleware to check if all inputs given by the
  * client required for user login are valid.
  *
  * @throws {Error} Will throw error if username or email has invalid format
@@ -36,9 +36,9 @@ function validateLoginInputs(req, res, next) {
 }
 
 /**
- * Validate /tweet inputs
+ * VALIDATE TWEET INPUTS
  *
- * Middleware to check if all inputs given
+ * @description Middleware to check if all inputs given
  * by the client to create a tweet are valid
  *
  * @throws {Error} Will throw error if username or email has invalid format
@@ -51,10 +51,12 @@ function validateTweetInputs(req, res, next) {
 }
 
 /**
- * Validate email (Utility function)
+ * VALIDATE EMAIL (Utility function)
  *
- * Validates an email based on regexp to check if email
+ * @description Validates an email based on regexp to check if email
  * is of form <ADDR>@<DOMAIN>. Ex : Jhon.smith@alpha.net.
+ *
+ * @param {string} email
  *
  * @returns {boolean} if email format is valid
  */
@@ -63,10 +65,12 @@ function isValidEmail(email) {
 }
 
 /**
- * Validate password (Utility function)
+ * VALIDATE PASSWORD (Utility function)
  *
- * Validates a password based on regexp to check if password is between 6 to 20
+ * @description Validates a password based on regexp to check if password is between 6 to 20
  * and has atleast one numeric digit, one uppercase letter and one lowercase letter
+ *
+ * @param {string} password
  *
  * @returns {boolean} if password format is valid
  */
@@ -75,10 +79,12 @@ function isValidPassword(password) {
 }
 
 /**
- * Validate username (Utility function)
+ * VALIDATE USERNAME (Utility function)
  *
- * Validates a username based on regexp to check if username is between
+ * @description Validates a username based on regexp to check if username is between
  * 6 to 20 characters and contains only alpha-numeric characters.
+ *
+ * @param {string} username
  *
  * @returns {boolean} if username format is valid
  */
@@ -87,10 +93,12 @@ function isValidUsername(username) {
 }
 
 /**
- * Validate tweet text (Utility function)
+ * VALIDATE TWEET TEXT (Utility function)
  *
- * Validates the text content of a tweet based on regexp to check if text
+ * @description Validates the text content of a tweet based on regexp to check if text
  * is between 5 to 200 characters and contains only alpha-numeric characters.
+ *
+ * @param {string} tweetText Text content of tweet
  *
  * @returns {boolean} if username format is valid
  */

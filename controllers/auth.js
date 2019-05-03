@@ -1,12 +1,13 @@
+const Tweet = require("../models").Tweet;
 const User = require("../models").User;
 const Op = require("sequelize").Op;
 const bcrypt = require("bcrypt");
 
 /**
- * Register controller
+ * REGISTER CONTROLLER
  *
- * Registers a new user. Creates a new user in the database and logs
- * the user into the application by setting session variables.
+ * @description Registers a new user. Creates a new user in the database
+ * and logs the user into the application by setting session variables.
  *
  * @throws {Error} Will throw error if user with given email already exists in the database
  * @throws {Error} Will throw error if user with given username already exists in the database
@@ -33,9 +34,9 @@ function register(req, res, next) {
 }
 
 /**
- * Login controller.
+ * LOGIN CONTROLLER
  *
- * Logs a user into the application and
+ * @description Logs a user into the application and
  * sets session details after authentication.
  *
  * @throws {Error} Will throw error if encryption of password fails
@@ -74,9 +75,9 @@ function login(req, res, next) {
 }
 
 /**
- * Logout controller.
+ * LOGOUT CONTROLLER.
  *
- * Logs a user out of the application by destroying session data for that user.
+ * @description Logs a user out of the application by destroying session data for that user.
  */
 function logout(req, res) {
   req.session.destroy();
@@ -84,60 +85,64 @@ function logout(req, res) {
 }
 
 /**
- * Me controller
+ * ME CONTROLLER
  *
- * returns current user logged into the application.
+ * @description Returns current user logged into the application.
+ * Optionally returns associated data.
+ *
+ * @throws {Error} Will throw error if application fails to fetch user from the database.
  */
-function me(req, res) {
-  res.json(req.session.user);
-}
+function me(req, res, next) {
+  userAttributes = ["id", "username", "displayName", "email", "createdAt"];
+  tweetAttributes = ["id", "text", "createdAt"];
+  userIncludes = [];
+  if (req.query.tweets == "TRUE") {
+    userIncludes.push({
+      model: Tweet,
+      attributes: tweetAttributes
+    });
+  }
 
-/**
- * Follow controller
- *
- * makes current user follow another user
- */
-function follow(req, res, next) {
-  return User.findByPk(req.session.user.id)
-    .then(follower => {
-      User.findByPk(req.params.userId)
-        .then(followed => {
-          if (!followed) {
-            next(new Error("USER_DOES_NOT_EXIST"));
-          } else {
-            follower
-              .addFollower(followed)
-              .then(res.status(200).send("SUCCESSFULLY_FOLLOWED"))
-              .catch(err => next(new Error("USER_FOLLOW_ERROR : " + err)));
-          }
-        })
-        .catch(err => next(new Error("USER_FETCH_ERROR" + err)));
+  if (req.query.retweets == "TRUE")
+    userIncludes.push({
+      model: Tweet,
+      as: "retweeted",
+      attributes: tweetAttributes,
+      through: { attributes: [] }
+    });
+
+  if (req.query.likes == "TRUE")
+    userIncludes.push({
+      model: Tweet,
+      as: "liked",
+      attributes: tweetAttributes,
+      through: { attributes: [] }
+    });
+
+  if (req.query.followers == "TRUE")
+    userIncludes.push({
+      model: User,
+      as: "followedBy",
+      attributes: userAttributes,
+      through: { attributes: [] }
+    });
+
+  if (req.query.following == "TRUE")
+    userIncludes.push({
+      model: User,
+      as: "following",
+      attributes: userAttributes,
+      through: { attributes: [] }
+    });
+
+  User.findByPk(req.session.user.id, {
+    attributes: userAttributes,
+    include: userIncludes
+  })
+    .then(user => {
+      res.status(200).send(user);
     })
-    .catch(err => next(new Error("USER_FETCH_ERROR" + err)));
+    .catch(err => next(Error("USER_FETCH_ERROR" + err)));
 }
 
-/**
- * Unfollow controller
- *
- * makes current user Unfollow another user
- */
-function unfollow(req, res, next) {
-  return User.findByPk(req.session.user.id)
-    .then(follower => {
-      User.findByPk(req.params.userId)
-        .then(followed => {
-          if (!followed) {
-            next(new Error("USER_DOES_NOT_EXIST"));
-          } else {
-            follower
-              .removeFollower(followed)
-              .then(res.status(200).send("SUCCESSFULLY_UNFOLLOWED"))
-              .catch(err => next(new Error("USER_UNFOLLOW_ERROR : " + err)));
-          }
-        })
-        .catch(err => next(new Error("USER_FETCH_ERROR" + err)));
-    })
-    .catch(err => next(new Error("USER_FETCH_ERROR" + err)));
-}
-
-module.exports = { register, login, logout, me, follow, unfollow };
+module.exports = { register, login, logout, me };

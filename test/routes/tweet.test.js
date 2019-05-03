@@ -23,7 +23,7 @@ module.exports = function() {
   });
 
   beforeEach(done => {
-    agent.get("/logout").end(() => done());
+    agent.post("/logout").end(() => done());
   });
 
   /**

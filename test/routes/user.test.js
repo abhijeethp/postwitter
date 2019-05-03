@@ -27,7 +27,7 @@ module.exports = function() {
         .send(userA)
         .end((err, res) => {
           userA.id = res.body.id;
-          agent.get("/logout").end(() => {
+          agent.post("/logout").end(() => {
             agent
               .post("/register")
               .send(userB)
@@ -41,19 +41,22 @@ module.exports = function() {
   });
 
   beforeEach(done => {
-    agent.get("/logout").end(() => done());
+    agent.post("/logout").end(() => done());
   });
 
   /**
    * FOLLOW ROUTE
    */
-  describe("GET /follow -> index route", () => {
+  describe("GET /follow -> follow route", () => {
     it("it should return a error as no user is currently logged in", done => {
-      agent.get(`/follow/${userB.id}`).end((err, res) => {
-        res.should.have.status(401);
-        res.error.text.should.be.eql("Error : NOT_LOGGED_IN");
-        done();
-      });
+      agent
+        .post("/user/follow")
+        .send({ userId: userB.id })
+        .end((err, res) => {
+          res.should.have.status(401);
+          res.error.text.should.be.eql("Error : NOT_LOGGED_IN");
+          done();
+        });
     });
 
     it("it should follow another user", done => {
@@ -61,11 +64,14 @@ module.exports = function() {
         .post("/login")
         .send({ username: userA.username, password: userA.password })
         .end((err, res) => {
-          agent.get(`/follow/${userB.id}`).end((err, res) => {
-            res.should.have.status(200);
-            res.text.should.be.eql("SUCCESSFULLY_FOLLOWED");
-            done();
-          });
+          agent
+            .post("/user/follow")
+            .send({ userId: userB.id })
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.text.should.be.eql("SUCCESSFULLY_FOLLOWED");
+              done();
+            });
         });
     });
 
@@ -74,11 +80,14 @@ module.exports = function() {
         .post("/login")
         .send({ username: userA.username, password: userA.password })
         .end((err, res) => {
-          agent.get(`/follow/${userA.id}`).end((err, res) => {
-            res.should.have.status(403);
-            res.error.text.should.be.eql("Error : CANNOT_FOLLOW_YOURSELF");
-            done();
-          });
+          agent
+            .post("/user/follow")
+            .send({ userId: userA.id })
+            .end((err, res) => {
+              res.should.have.status(403);
+              res.error.text.should.be.eql("Error : CANNOT_FOLLOW_YOURSELF");
+              done();
+            });
         });
     });
 
@@ -87,11 +96,14 @@ module.exports = function() {
         .post("/login")
         .send({ username: userA.username, password: userA.password })
         .end((err, res) => {
-          agent.get(`/follow/${-1}`).end((err, res) => {
-            res.should.have.status(404);
-            res.error.text.should.be.eql("Error : USER_DOES_NOT_EXIST");
-            done();
-          });
+          agent
+            .post("/user/follow")
+            .send({ userId: -1 })
+            .end((err, res) => {
+              res.should.have.status(404);
+              res.error.text.should.be.eql("Error : USER_DOES_NOT_EXIST");
+              done();
+            });
         });
     });
   });
@@ -99,9 +111,9 @@ module.exports = function() {
   /**
    * UNFOLLOW ROUTE
    */
-  describe("GET /unfollow -> create route", () => {
+  describe("DELETE /follow -> unfollow route", () => {
     it("it should return a error as no user is currently logged in", done => {
-      agent.get(`/unfollow/${userB.id}`).end((err, res) => {
+      agent.delete(`/user/follow/${userB.id}`).end((err, res) => {
         res.should.have.status(401);
         res.error.text.should.be.eql("Error : NOT_LOGGED_IN");
         done();
@@ -113,13 +125,16 @@ module.exports = function() {
         .post("/login")
         .send({ username: userA.username, password: userA.password })
         .end((err, res) => {
-          agent.get(`/follow/${userB.id}`).end(() => {
-            agent.get(`/unfollow/${userB.id}`).end((err, res) => {
-              res.should.have.status(200);
-              res.text.should.be.eql("SUCCESSFULLY_UNFOLLOWED");
-              done();
+          agent
+            .post(`/user/follow`)
+            .send({ userId: userB.id })
+            .end(() => {
+              agent.delete(`/user/follow/${userB.id}`).end((err, res) => {
+                res.should.have.status(200);
+                res.text.should.be.eql("SUCCESSFULLY_UNFOLLOWED");
+                done();
+              });
             });
-          });
         });
     });
 
@@ -128,7 +143,7 @@ module.exports = function() {
         .post("/login")
         .send({ username: userA.username, password: userA.password })
         .end((err, res) => {
-          agent.get(`/unfollow/${userA.id}`).end((err, res) => {
+          agent.delete(`/user/follow/${userA.id}`).end((err, res) => {
             res.should.have.status(403);
             res.error.text.should.be.eql("Error : CANNOT_UNFOLLOW_YOURSELF");
             done();
@@ -141,7 +156,7 @@ module.exports = function() {
         .post("/login")
         .send({ username: userA.username, password: userA.password })
         .end((err, res) => {
-          agent.get(`/unfollow/${-1}`).end((err, res) => {
+          agent.delete(`/user/follow/${-1}`).end((err, res) => {
             res.should.have.status(404);
             res.error.text.should.be.eql("Error : USER_DOES_NOT_EXIST");
             done();
