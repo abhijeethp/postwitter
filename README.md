@@ -18,7 +18,7 @@
 
 ---
 
-> ## RUNNING THE APPLICATION
+> ## RUNNING this fuc all APPLICATION
 
 #### Requirements
 
